@@ -1,15 +1,16 @@
+#define GLM_FORCE_CTOR_INIT
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <shader.h>
-#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 using namespace glm;
 
 constexpr auto vertexShader = R"(
 #version 330 core
-layout (location = 0) in vec3 aPosition;
+layout (location = 1) in vec3 aPosition;
 
 uniform mat4 transform;
 
@@ -85,7 +86,7 @@ int main(int, char**)
 	// setup
 	glClearColor(0.2f, 0.3f, 0.2f, 1.0f);
 	shader.set("color", vec3{ 1.0, 0.5, 0.5 });
-	shader.set("transform", scale(identity<mat4>(), vec3{ vec2{0.75f}, 1.0f }));
+	shader.set("transform", scale(mat4(), vec3{ vec2{0.75f}, 1.0f }));
 
 	// game loop
     while (!glfwWindowShouldClose(window))
