@@ -147,5 +147,5 @@ void Shader::set(const std::string &name, const glm::mat4 &value)
 
 GLint Shader::getAttributeLocation(const std::string &name)
 {
-    glGetAttribLocation(program, name.c_str());
+    return glGetAttribLocation(program, name.c_str());
 }
