@@ -11,24 +11,48 @@ using namespace glm;
 constexpr auto vertexShader = R"(
 #version 330 core
 layout (location = 1) in vec3 aPosition;
+out vec2 fragCoord;
 
 uniform mat4 transform;
 
 void main()
 {
+	fragCoord = aPosition.xy;
 	gl_Position = transform * vec4(aPosition, 1.0);
 }
 )";
 
 constexpr auto fragmentShader = R"(
 #version 330 core
+in vec2 fragCoord;
 out vec4 fragColor;
 
 uniform vec3 color;
 
+const float PI = 3.1415926535897932384626433832795;
+const vec2 CANVAS_SIZE = vec2(2);
+
+vec2 convert_to_cell_coords(vec2 coord, vec2 grid);
+
+float lineWidth = 0.01;
+vec2 grid = vec2(4);
+vec2 cellSize = CANVAS_SIZE / grid;
+
 void main()
 {
+	vec2 cellCoord = convert_to_cell_coords(fragCoord, cellSize);
+	vec2 cutoff = convert_to_cell_coords(vec2(1.0 - lineWidth), cellSize);
+
+	vec2 alpha = step(cutoff, cellCoord);
+	if (max(alpha.x, alpha.y) == 0.0)
+		discard;
+
 	fragColor = vec4(color, 1.0);
+}
+
+vec2 convert_to_cell_coords(vec2 coord, vec2 cellSize)
+{
+	return cos(((2 * PI) / cellSize) * coord);
 }
 )";
 
@@ -38,6 +62,19 @@ constexpr float vertices[] = {
 	 1.0, -1.0, 0.0, // Bottom Right
 	 1.0,  1.0, 0.0, // Top Right
 };
+
+void bufferSizeCallback(GLFWwindow* window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+}
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE || (key == GLFW_KEY_F4 && GLFW_MOD_ALT & mods))
+	{
+		glfwSetWindowShouldClose(window, true);
+	}
+}
 
 int main(int, char**)
 {
@@ -55,6 +92,8 @@ int main(int, char**)
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
+	glfwSetFramebufferSizeCallback(window, bufferSizeCallback);
+	glfwSetKeyCallback(window, keyCallback);
 
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
@@ -100,6 +139,9 @@ int main(int, char**)
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+	glDeleteBuffers(1, &vbo);
+	glDeleteVertexArrays(1, &vao);
     glfwDestroyWindow(window);
     glfwTerminate();
     exit(EXIT_SUCCESS);
