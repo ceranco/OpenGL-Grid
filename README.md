@@ -6,7 +6,10 @@ There will be a complete explanation for each part of the code and I will try to
 
 ##### Table of Contents  
 * [Dependencies](#dependencies)  
-
+  * [Linux](#linux)
+  * [Windows](#windows)
+* [Installation](#installation)
+* [License](#license)
 
 <a name="dependencies"/>
 
@@ -16,6 +19,8 @@ There will be a complete explanation for each part of the code and I will try to
 * [GLFW3](https://www.glfw.org/) - Windowing library.
 * [GLM](https://glm.g-truc.net/) - OpenGL math library.
 
+<a name="linux"/>
+
 ### Linux
 
 On linux simply use your package manager of choice and install the libraries:
@@ -23,6 +28,8 @@ On linux simply use your package manager of choice and install the libraries:
 ```bash
 sudo apt install glfw3 glm
 ```
+
+<a name="windows"/>
 
 ### Windows
 
@@ -40,6 +47,8 @@ cmake . -DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake
 ```
 You can read more [here](https://github.com/microsoft/vcpkg/blob/master/docs/examples/installing-and-using-packages.md).
 
+<a name="installation"/>
+
 ## Installation
 
 1. Clone this repository:
@@ -56,6 +65,8 @@ cmake .
 ```
 
 3. Build using your build system.
+
+<a name="license"/>
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
