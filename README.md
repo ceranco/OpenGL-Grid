@@ -3,6 +3,12 @@
 OpenGL-Grid is a repository that aims to act as a beginners guide to creating a *grid* in *OpenGL* using shaders.  
 There will be a complete explanation for each part of the code and I will try to make it as easy as possible to follow along.
 
+
+## Table of Contents  
+* [Dependencies](#dependencies)  
+
+
+<a name="dependencies"/>  
 ## Dependencies
 
 * [CMake](https://cmake.org/) - Meta-build system.
@@ -52,3 +58,5 @@ cmake .
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
