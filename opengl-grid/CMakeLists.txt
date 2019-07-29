@@ -17,3 +17,7 @@ target_link_libraries(opengl-grid PRIVATE glm)
 
 # set target properties
 target_compile_features(opengl-grid PRIVATE cxx_std_17)
+
+# copy shaders to output
+add_custom_command(TARGET opengl-grid POST_BUILD COMMAND ${CMAKE_COMMAND} -E 
+				   copy_directory	${CMAKE_CURRENT_SOURCE_DIR}/shaders/ ${CMAKE_CURRENT_BINARY_DIR}/shaders/)
