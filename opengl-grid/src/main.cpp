@@ -105,7 +105,7 @@ int main(int, char**)
 	}
 
 	// create shader
-	Shader shader{ vertexShader, fragmentShader };
+	Shader shader = Shader::fromFile("shaders/shader.vert", "shaders/shader.frag");
 
 	// generate vbo and buffer data
 	GLuint vbo;
