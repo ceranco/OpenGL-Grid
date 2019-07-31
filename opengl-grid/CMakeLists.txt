@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 
 # define target
-add_executable(opengl-grid src/main.cpp src/shader.cpp)
+add_executable(opengl-grid src/main.cpp src/shader.cpp shaders/shader.vert shaders/shader.frag)
 
 # set include directories
 target_include_directories(opengl-grid PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
