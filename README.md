@@ -9,6 +9,8 @@ There will be a complete explanation for each part of the code and I will try to
   * [Linux](#linux)
   * [Windows](#windows)
 * [Installation](#installation)
+* [Tutorial](#tutorial)
+  * [Initial Setup](#initial-setup)
 * [License](#license)
 
 <a name="dependencies"/>
@@ -65,6 +67,18 @@ cmake .
 ```
 
 3. Build using your build system.
+
+<a name="tutorial"/>
+
+## Tutorial
+
+This section will try to explain with relative simplicity how the program works.  
+Basic knowledge of OpenGL such as what are VAOs, VBOs and Shaders is expected.  
+If you don't possess this knowledge, I recommend the excellent tutorial over at [learnopengl](https://learnopengl.com/).
+
+
+<a name="initial-setup"/>
+
 
 <a name="license"/>
 
